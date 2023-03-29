@@ -6,8 +6,6 @@ package clase.pkg005;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -17,50 +15,57 @@ import java.util.Random;
 public class EExtras04 {
 
     public static void main(String[] args) {
-        // Creamos una lista de alumnos con sus nombres y apellidos
-        List<String> alumnos = new ArrayList<>();
-        alumnos.add("Juan Pérez");
-        alumnos.add("María Gómez");
-        alumnos.add("Pedro López");
-        alumnos.add("Luisa Fernández");
-        alumnos.add("Ana Martínez");
-        alumnos.add("Jorge García");
-        alumnos.add("Laura Díaz");
-        alumnos.add("Carlos Ruiz");
-        alumnos.add("Lucía Sánchez");
-        alumnos.add("Federico Torres");
+        Random rnd = new Random();
 
-        // Creamos un mapa para almacenar las notas de los alumnos
-        Map<String, Double[]> notas = new HashMap<>();
+        String[] nombres = {"Juan", "Maria", "Luis", "Ana", "Pedro", "Lucia", "Pablo", "Laura", "Diego", "Carla"};
+        String[] apellidos = {"Garcia", "Lopez", "Fernandez", "Perez", "Rodriguez", "Sanchez", "Martinez", "Gonzalez", "Romero", "Alvarez"};
 
-        // Generamos las notas aleatoriamente para cada alumno y las almacenamos en el mapa
-        Random random = new Random();
-        for (String alumno : alumnos) {
-            Double[] notasAlumno = new Double[4];
-            notasAlumno[0] = 1.0 + (10.0 - 1.0) * random.nextDouble(); // primer trabajo práctico evaluativo
-            notasAlumno[1] = 1.0 + (10.0 - 1.0) * random.nextDouble(); // segundo trabajo práctico evaluativo
-            notasAlumno[2] = 1.0 + (10.0 - 1.0) * random.nextDouble(); // primer integrador
-            notasAlumno[3] = 1.0 + (10.0 - 1.0) * random.nextDouble(); // segundo integrador
-            notas.put(alumno, notasAlumno);
+        HashMap<String, ArrayList<Double>> notasAlumnos = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            String nombre = nombres[rnd.nextInt(nombres.length)];
+            String apellido = apellidos[rnd.nextInt(apellidos.length)];
+            String nombreCompleto = nombre + " " + apellido;
+
+            ArrayList<Double> notas = new ArrayList<>();
+
+            // Notas de los trabajos prácticos evaluativos
+            double tp1 = 1 + rnd.nextDouble() * 9;
+            double tp2 = 1 + rnd.nextDouble() * 9;
+
+            notas.add(tp1*0.10);
+            notas.add(tp2*0.15);
+
+            // Notas de los integradores
+            double int1 = 1 + rnd.nextDouble() * 9;
+            double int2 = 1 + rnd.nextDouble() * 9;
+            notas.add(int1*0.25);
+            notas.add(int2*0.50);
+
+            // Promedio de las notas
+            double promedio = notas.stream().mapToDouble(Double::doubleValue).sum() ;
+            notas.add(promedio);
+
+            notasAlumnos.put(nombreCompleto, notas);
+            System.out.println(nombreCompleto + ": " + notas);
         }
 
-        // Calculamos el promedio de las notas de cada alumno y los almacenamos en un arreglo
-        Double[] promedios = new Double[alumnos.size()];
+        // Conteo de aprobados y desaprobados
         int aprobados = 0;
         int desaprobados = 0;
-        for (int i = 0; i < alumnos.size(); i++) {
-            Double[] notasAlumno = notas.get(alumnos.get(i));
-            Double promedio = 0.1 * notasAlumno[0] + 0.15 * notasAlumno[1] + 0.25 * notasAlumno[2] + 0.5 * notasAlumno[3];
-            promedios[i] = promedio;
-            if (promedio >= 7.0) {
+
+        for (ArrayList<Double> notas : notasAlumnos.values()) {
+            double promedio = notas.get(4);
+            if (promedio >= 7) {
                 aprobados++;
             } else {
                 desaprobados++;
             }
         }
 
-        // Mostramos por pantalla la cantidad de aprobados y desaprobados
-        System.out.println("Cantidad de aprobados: " + aprobados);
-        System.out.println("Cantidad de desaprobados: " + desaprobados);
+        // Impresión de resultados
+        System.out.println("Aprobados: " + aprobados);
+        System.out.println("Desaprobados: " + desaprobados);
     }
+
 }
