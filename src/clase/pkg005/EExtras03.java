@@ -7,8 +7,9 @@ package clase.pkg005;
 import java.util.Random;
 
 /**
- *
- * @author pc
+ * Crear una función rellene un vector con números aleatorios, pasándole un
+ * arreglo por parámetro. Después haremos otra función o procedimiento que
+ * imprima el vector.
  */
 public class EExtras03 {
 

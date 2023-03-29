@@ -9,8 +9,16 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- *
- * @author pc
+ * Los profesores del curso de programación de Egg necesitan llevar un registro
+ * de las notas adquiridas por sus 10 alumnos para luego obtener una cantidad de
+ * aprobados y desaprobados. Durante el período de cursado cada alumno obtiene 4
+ * notas, 2 por trabajos prácticos evaluativos y 2 por parciales. Las
+ * ponderaciones de cada nota son: Primer trabajo práctico evaluativo 10%
+ * Segundo trabajo práctico evaluativo 15% Primer Integrador 25% Segundo
+ * integrador 50% Una vez cargadas las notas, se calcula el promedio y se guarda
+ * en el arreglo. Al final del programa los profesores necesitan obtener por
+ * pantalla la cantidad de aprobados y desaprobados, teniendo en cuenta que solo
+ * aprueban los alumnos con promedio mayor o igual al 7 de sus notas del curso.
  */
 public class EExtras04 {
 
@@ -33,17 +41,17 @@ public class EExtras04 {
             double tp1 = 1 + rnd.nextDouble() * 9;
             double tp2 = 1 + rnd.nextDouble() * 9;
 
-            notas.add(tp1*0.10);
-            notas.add(tp2*0.15);
+            notas.add(tp1 * 0.10);
+            notas.add(tp2 * 0.15);
 
             // Notas de los integradores
             double int1 = 1 + rnd.nextDouble() * 9;
             double int2 = 1 + rnd.nextDouble() * 9;
-            notas.add(int1*0.25);
-            notas.add(int2*0.50);
+            notas.add(int1 * 0.25);
+            notas.add(int2 * 0.50);
 
             // Promedio de las notas
-            double promedio = notas.stream().mapToDouble(Double::doubleValue).sum() ;
+            double promedio = notas.stream().mapToDouble(Double::doubleValue).sum();
             notas.add(promedio);
 
             notasAlumnos.put(nombreCompleto, notas);
