@@ -38,7 +38,7 @@ public class EExtras06 {
 
             // Pone la palabra en una fila y columna al azar
             int row = rand.nextInt(size);
-            int shiftplace = rand.nextInt(size - 1) - word.length();
+            int shiftplace = rand.nextInt( size - word.length() );
             for (int j = 0; j < word.length(); j++) {
                 wordSearch[row][j+shiftplace] = word.charAt(j);
             }
