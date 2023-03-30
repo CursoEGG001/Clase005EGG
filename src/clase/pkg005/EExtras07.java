@@ -19,18 +19,21 @@ public class EExtras07 {
         System.out.println("Elige el número de iteraciones para Fibonacci:");
         n = info.nextInt();
         int[] fibonacci = new int[n];
-        // Fill the vector with the first N numbers of the Fibonacci sequence
+        // Rellenar la secuencia con los primeros N numero
         for (int i = 0; i < n; i++) {
             fibonacci[i] = fib(i);
         }
 
-        // Display the vector
+        // Mostrar vector
         for (int i = 0; i < n; i++) {
-            System.out.print(" " + fibonacci[i]);
+            System.out.print(" [" + fibonacci[i]+"]");
         }
+        System.out.println("");
     }
+    
+    
 
-    // Recursive function to calculate the Nth number of the Fibonacci sequence
+    // Funcion recursiva para mostrar la enesima secuencia
     public static int fib(int n) {
         if (n == 0 || n == 1) {
             return 1;
